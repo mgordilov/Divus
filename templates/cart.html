@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<section class="main">
+    <h1>This is your cart</h1>
+    <section class="cart_grid">
+        {% if cart_empty %}
+        <h2 class="empty_cart">There are no items in your cart</h2>
+        {% else %}
+        <ul class="cart_list">
+            {% for sku, item in cart_products.items() %}
+            <li>
+                <div>
+                    <a href="{{ url_for('item', sku=sku) }}">
+                        <div class="cart_list_image" style="background-image: url('{{ item['image'] }}')"></div>
+                        <div class="cart_list_info">
+                            <h3>{{ item['name'] }}</h3>
+                            <p>Price: €{{ item['price'] }}</p>
+                            <p>Size: {{ item['size'] }}</p>
+                        </div>
+                    </a>
+                </div>
+                <form action="{{ url_for('remove_from_cart', sku=sku) }}" method="POST" class="remove_from_cart">
+                    <p>Quantity: {{ item['quantity'] }}</p>
+                    <input type="submit" value="Remove">
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        <form action="{{ url_for('order') }}" method="POST">
+            <input type="submit" value="Order items" class="order_btn">
+        </form>
+        {% endif %}
+    </section>
+</section>
+
+
+{% endblock %}

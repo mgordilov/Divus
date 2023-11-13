@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<section class="main">
+    <h1>{{ gender.capitalize() }}</h1>
+    <section class="products_grid">
+
+        {% for sku, item in gproducts %}
+            <div class="product_card">
+                <a href="{{ url_for('item', sku=sku) }}">
+                    <div class="product_image" style="background-image: url('{{ item['image'] }}')">
+                    </div>
+                    <div class="info">
+                        <h3>{{ item['name'] }}</h3>
+                        <p>Price: €{{ item['price'] }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+
+    </section>
+
+</section>
+
+{% endblock %}
