@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DivuS Dashboard</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="db_header">
+        <h1 class="db_title">Admin Dashboard</h1>
+        <nav class="db_nav">
+            <a href="/">Back to store</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    
+    <main class="db_main">
+
+        <div class="db_func db_add">
+            <h2>Add New Product</h2>
+            <form method="POST" action="/add_product" class="db_add_form">
+                <label for="sku">SKU:</label>
+                <input type="text" name="sku" required>
+                <label for="name">Name:</label>
+                <input type="text" name="name" required>
+                <label for="price">Price:</label>
+                <input type="text" name="price" required>
+                <label for="description">Description:</label>
+                <textarea type="text" name="description" rows="5"></textarea>
+                <label for="price">Gender:</label>
+                <select name="gender" id="gender">
+                    <option value="women">Women</option>
+                    <option value="men">Men</option>
+                    <option value="kids">Kids</option>
+                </select>
+                <label for="image">Image URL:</label>
+                <input type="text" name="image" required>
+                <input type="submit" value="Add" id="db_button">
+            </form>
+        </div>
+
+        <hr>
+
+        <div class="db_func db_update">
+            <h2>Product List</h2>
+            <ul class="db_product_list">
+                {% for sku, product in products.items() %}
+                    <li>
+                        <div class="db_update_card">
+                            <div class="db_update_image" style="background-image: url('{{ product['image'] }}')">
+                            </div>
+                            <form method="POST" action="/update_product/{{ sku }}" class="db_update_form">
+                                <div class="db_update_title_price">
+                                    <div class="db_upd_lbl">
+                                        <label for="name">Name:</label>
+                                        <input type="text" name="name" value="{{ product['name'] }}" required>
+                                    </div>
+                                    <div class="db_upd_lbl">
+                                        <label for="price">Price:</label>
+                                        <input type="text" name="price" value="{{ product['price'] }}" required>
+                                    </div>
+                                    <div class="db_upd_lbl">
+                                        <label for="stock">Stock:</label>
+                                        <input type="text" name="stock" value="{{ product['stock'] }}" required>
+                                    </div>
+                                </div>
+                                <div class="db_update_description">
+                                    <label for="description">Description:</label>
+                                    <textarea type="text" name="description" rows="3">{{ product['description'] }}</textarea>
+                                </div>
+                                <input type="submit" value="Update" id="db_button">
+                            </form>
+                        </div>
+                        <div class="db_remove_card">
+                            <form method="POST" action="{{url_for('delete_product', sku=sku)}}" class="db_update_form">
+                                <input type="submit" value="Remove item" id="db_button_remove">
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+    </main>
+
+</body>
+</html>

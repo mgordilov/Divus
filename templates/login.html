@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<section class="main login_page">
+    <form action="{{ url_for('admin') }}" method="POST" method="GET" class="login_form">
+        <h1 class="login_title">Log In</h1>
+        <div class="username_inputs labels">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="login_input" placeholder="admin">
+        </div>
+        <div class="pass_inputs labels">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="login_input" placeholder="admin">
+        </div>    
+        <input type="submit" class="login_button" value="Log In">
+    </form>
+</section>
+
+
+{% endblock %}

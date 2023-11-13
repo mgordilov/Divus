@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block main %}
+<section class="main" id="homepage">
+    <a href="{{ url_for('store')}}" class="all_products_homecard">
+        <button>
+            <span class="button_top">Shop all</span>
+        </button>
+    </a>
+    <div class="categories_hmpg">
+        <a href="{{ url_for('products_by_gender', gender='women') }}" class="women_homecard">
+            <button>
+                <span class="button_top">Women</span>
+            </button>
+        </a>
+        <a href="{{ url_for('products_by_gender', gender='men') }}" class="men_homecard">
+            <button>
+                <span class="button_top">Men</span>
+            </button>
+        </a>
+        <a href="{{ url_for('products_by_gender', gender='kids') }}" class="kids_homecard">
+            <button>
+                <span class="button_top">Kids</span>
+            </button>
+        </a>
+    </div>
+</section>
+{% endblock %}
