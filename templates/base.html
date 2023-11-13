@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divus Store</title>
+
+    <link rel="icon" href="/static/img/icon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <script src="https://kit.fontawesome.com/62b05945c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="toggle_btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav>
+            <div class="dropdown_menu">
+                <li><a href="{{ url_for('store')}}" class="category">Shop all</a></li>
+                <li><a href="{{ url_for('products_by_gender', gender='women')}}" class="category women">Women</a></li>
+                <li><a href="{{ url_for('products_by_gender', gender='men')}}" class="category men">Men</a></li>
+                <li><a href="{{ url_for('products_by_gender', gender='kids')}}" class="category kids">Kids</a></li>
+            </div>
+        </nav>
+        <a href="{{ url_for('home') }}">
+            <div class="logo">
+                <img src="/static/img/logo.png" alt="Logo" width="200px">
+            </div>
+        </a>
+        <nav>
+            <div class="right_side_nav">
+                <a href="{{ url_for('dashboard') }}" class="nav_items">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Account</span>
+                </a>
+                <a href="{{ url_for('view_cart') }}" class="nav_items cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Cart</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div>
+        {% block main %}
+        {% endblock %}
+    </div>
+
+    <footer class="footer">
+        <h6>&copy; Copyright 2023 Maxim Gordilov</h6>
+        <div class="follow">
+            <h6>Follow me:</h6>
+            <ul>
+                <li><a href="https://www.facebook.com/mgordilov" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/m.gordilov" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="https://github.com/mgordilov" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+
+</body>
+</html>

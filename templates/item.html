@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block main %}
+<section class="main item_page">
+
+    <div class="item_preview">
+
+        <img src="{{ product['image'] }}" alt="Product" class="item_image">
+
+        <div class="item_details">
+            <h2 class="item_name">{{ product['name'] }}</h2>
+            <div class="item_price_stock">
+                <h4 class="item_price">Price: €{{ product['price'] }}</h4>
+                <h4 class="item_stock">Remained: {{ product['stock'] }}</h4>
+            </div>
+            
+            <form action="{{ url_for('add_to_cart', sku=sku) }}" method="POST" class="item_form">
+                <h4>Select size:</h4>
+                <select name="size" id="size_choose" class="item_size">
+                {% for size in product['sizes'] %}
+                    <option value="{{ size }}">{{ size }}</option>
+                {% endfor %}
+                </select>
+                <input type="submit" value="Add to cart" class="item_add">
+            </form>
+        </div>
+        
+    </div>
+
+    <div class="item_description">
+        <h3>Description</h3>
+        <p>{{ product['description'] }}</p>
+    </div>
+
+</section>
+{% endblock %}
